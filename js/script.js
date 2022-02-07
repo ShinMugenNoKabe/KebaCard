@@ -206,7 +206,6 @@ function comprobarCartas(carta) {
             // Sumamos el contador y restablecemos el juego
             contador_puntos.text((parseInt(contador_puntos.text()) + 1));
 
-
             // Cambia el contenido de la barra informativa
             barraInformativaTexto("message_success");
 
