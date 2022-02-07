@@ -26,7 +26,7 @@ let sonidoError = $('.error')[0];
 let sonidoVictoria = $('.victoria')[0];
 let sonidoBomba = $('.bomba')[0];
 
-
+let boton_comenzar = $("#boton-comenzar");
 
 $(document).ready(function() {
 // Pedimos el nombre del jugador
@@ -47,6 +47,10 @@ let restablecer = () => {
 }
 
 let comenzarJuego = () => {
+    // Restablecemos los DIVs y cambiamos el texto de los botones
+    boton_comenzar.text("Volver a empezar");
+    quitarSombraYAnadirListenerATodosLosDivs();
+
     // Inicalización de variables, llama al método para inicializar las variables a 0
     restablecer();
 
@@ -55,7 +59,7 @@ let comenzarJuego = () => {
     contador_errores.text("0");
     errores = 0;
 
-    //pedirNombre();
+    pedirNombre();
 
     anadirListenerYValueACartas();
 
@@ -64,10 +68,8 @@ let comenzarJuego = () => {
     $("#ranking-puntuacion").text(localStorage.getItem("Ranking"));
 }
 
-// Comienza el juego al cargar la página
-comenzarJuego();
-//$(window).load(comenzarJuego());
-
+// Añade el listener al botón de comenzar
+boton_comenzar.click(comenzarJuego);
 
 function comprobarValores(carta, kebab_pulsado) {
     if (celdaImagen2 > 0) {
