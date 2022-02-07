@@ -32,6 +32,12 @@ function loadJSON(json) {
     top_player.text(elements["top_player"]);
     idiomaTexto.text(elements["language"]);
     descripcion.text(elements["game_description"]);
+
+    if (boton_comenzar.attr("data-estado") == "start") {
+        boton_comenzar.text(elements["start_game"]);
+    } else {
+        boton_comenzar.text(elements["restart_game"]);
+    }
 }
 
 function barraInformativaTexto(estado) {

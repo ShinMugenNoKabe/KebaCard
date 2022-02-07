@@ -56,7 +56,8 @@ let comenzarJuego = () => {
     errores = 0;
 
     // Restablecemos los DIVs y cambiamos el texto de los botones
-    boton_comenzar.text("Volver a empezar");
+    boton_comenzar.attr("data-estado", "started");
+    loadLanguage();
     quitarSombraATodosLosDivs();
 
     pedirNombre();
