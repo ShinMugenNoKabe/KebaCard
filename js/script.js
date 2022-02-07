@@ -47,10 +47,6 @@ let restablecer = () => {
 }
 
 let comenzarJuego = () => {
-    // Restablecemos los DIVs y cambiamos el texto de los botones
-    boton_comenzar.text("Volver a empezar");
-    quitarSombraYAnadirListenerATodosLosDivs();
-
     // Inicalización de variables, llama al método para inicializar las variables a 0
     restablecer();
 
@@ -58,6 +54,10 @@ let comenzarJuego = () => {
     contador_puntos.text("0");
     contador_errores.text("0");
     errores = 0;
+
+    // Restablecemos los DIVs y cambiamos el texto de los botones
+    boton_comenzar.text("Volver a empezar");
+    quitarSombraATodosLosDivs();
 
     pedirNombre();
 
@@ -86,8 +86,6 @@ function comprobarValores(carta, kebab_pulsado) {
 
     // Cambiamos el contenido de la primera celda para que aparezca la imagen según su valor
     carta.innerHTML = "<img src='images/kebabs/kebab" + kebab_pulsado + ".jpg' class='imagen'>";
-   
-    
 
     if (kebabValor2 > 0) {
         kebabValor1 = 0;
@@ -131,7 +129,7 @@ function anadeSombraYQuitaListener() {
     $(celdas_pulsadas[1]).unbind('click');
 }
 
-function quitarSombraYAnadirListenerATodosLosDivs() {
+function quitarSombraATodosLosDivs() {
     let celdas = $(".celda");
 
     for (let i = 0; i < celdas.length; i++) {
@@ -139,7 +137,7 @@ function quitarSombraYAnadirListenerATodosLosDivs() {
         celdas[i].innerHTML = "";
     }
 
-    celdas.click(comprobarCartas);
+    //celdas.click(comprobarCartas);
 }
 
 function comprobarRanking() {
@@ -157,7 +155,7 @@ function comprobarPuntuacion() {
         alert("¡Felicidades! Has ganado el juego. Tuviste un total de " + contador_errores.text() + " errores");
 
         // Quitamos la sombra a todas las celdas y les volvemos a añadir el listener
-        quitarSombraYAnadirListenerATodosLosDivs();
+        //quitarSombraYAnadirListenerATodosLosDivs();
 
         // Si el número de errores es menor que el de el récord o la cookie no existe, guardamos los valores
         comprobarRanking();
