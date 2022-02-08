@@ -1,6 +1,7 @@
 {
     "lang": {
         "en": {
+            "player_name": "Player name",
             "score": "Score",
             "game_description": "Welcome to the kebab guessing cards game. Instructions: you have to choose pairs of cards to guess all of the pairs. When clicking on two cards and they don't match you must wait until they dissapear before choosing another one. If your error count is lower than the current top player's count  your name will appear in the top section of the page and your name will be saved on a cookie.",
             "errors": "Errors",
@@ -10,9 +11,11 @@
             "message_victory": "You won the game",
             "language": "Language",
             "start_game": "Start the game",
-            "restart_game": "Restart the game"
+            "restart_game": "Restart the game",
+            "progress": "Progress:"
         },
         "es": {
+            "player_name": "Nombre del jugador",
             "score": "Puntuación",
             "game_description": "Bienvenido al juego de adivinanzas de cartas de kebabs. Instrucciones: deberá de elegir parejas de cartas para adivinarlas todas. Al hacer click en dos cartas y que no coincidan deberá esperar a que desparezcan para poder seleccionar otras y ganar. Si su número de errores es menor al del jugador con mejor puntuación, su nombre aparecerá en la parte superior y se guardará en una cookie.",
             "errors": "Errores",
@@ -22,7 +25,8 @@
             "message_victory": "Has ganado el juego",
             "language": "Idioma",
             "start_game": "Comenzar el juego",
-            "restart_game": "Volver a empezar"
+            "restart_game": "Volver a empezar",
+            "progress": "Progreso:"
         }
     }
 }

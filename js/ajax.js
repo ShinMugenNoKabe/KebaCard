@@ -26,12 +26,14 @@ function loadJSON(json) {
 
     let elements = elementosLangJSON[lang];
 
+    nombreJugador.text(elements["player_name"]);
     puntuacionTexto.text(elements["score"]);
     puntuacionTextoRanking.text(elements["score"]);
     errorTexto.text(elements["errors"]);
     top_player.text(elements["top_player"]);
     idiomaTexto.text(elements["language"]);
     descripcion.text(elements["game_description"]);
+    progresoTexto.text(elements["progress"]);
 
     if (boton_comenzar.attr("data-estado") == "start") {
         boton_comenzar.text(elements["start_game"]);

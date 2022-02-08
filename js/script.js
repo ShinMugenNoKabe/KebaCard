@@ -15,6 +15,7 @@ let contador_puntos = $("#contador-puntos");
 let contador_errores = $("#contador-errores");
 
 let errores = 0;
+let puntos = 0;
 
 let nombre = "";
 let nick = $("#nick");
@@ -27,13 +28,17 @@ let sonidoVictoria = $('.victoria')[0];
 let sonidoBomba = $('.bomba')[0];
 
 let boton_comenzar = $("#boton-comenzar");
+let nombreJugador = $("#nombreJugador");
+
+let barraProgreso = $('.progress-bar')[0];
+let progresoTexto = $("#progresoTexto");
+
+let ventana_modal = $("#modal");
+
+let boton_comenzar_modal = $("#comenzarModal");
+let nombre_modal = $("#nombreModal");
 
 $(document).ready(function() {
-// Pedimos el nombre del jugador
-let pedirNombre = () => {
-    nombre = prompt("Dime tu nick:");
-    $("#nick").text(nombre);
-}
 
 // Restablece los datos
 let restablecer = () => {
@@ -47,6 +52,13 @@ let restablecer = () => {
 }
 
 let comenzarJuego = () => {
+    // Cogemos el nombre del jugador y la dificultad
+    nombre = nombre_modal.val();
+    nick.text(nombre);
+    
+    // Cerramos la ventana modal
+    ventana_modal.modal('hide');
+
     // Inicalización de variables, llama al método para inicializar las variables a 0
     restablecer();
 
@@ -54,23 +66,30 @@ let comenzarJuego = () => {
     contador_puntos.text("0");
     contador_errores.text("0");
     errores = 0;
+    puntos = 0;
 
     // Restablecemos los DIVs y cambiamos el texto de los botones
     boton_comenzar.attr("data-estado", "started");
     loadLanguage();
     quitarSombraATodosLosDivs();
 
-    pedirNombre();
-
     anadirListenerYValueACartas();
+
+    restablecerBarra();
 
     // Le aplica el texto a los elementos del DOM las variables guardadas en web storage
     $("#ranking-jugador").text(localStorage.getItem("Jugador"));
     $("#ranking-puntuacion").text(localStorage.getItem("Ranking"));
 }
 
-// Añade el listener al botón de comenzar
-boton_comenzar.click(comenzarJuego);
+function abrirVentanaModal() {
+    // Abre la ventana y añade el listener de comenzar
+    ventana_modal.modal('show');
+    boton_comenzar_modal.click(comenzarJuego);
+}
+
+// Añade el listener de abrir la ventana
+boton_comenzar.click(abrirVentanaModal);
 
 function comprobarValores(carta, kebab_pulsado) {
     if (celdaImagen2 > 0) {
@@ -148,22 +167,58 @@ function comprobarRanking() {
     }
 }
 
+function restablecerBarra() {
+    barraProgreso.style.width = "0%";
+}
+
 function comprobarPuntuacion() {
-    if (parseInt(contador_puntos.text()) == 7) {
+    if (puntos == 7) {
         // Cambiamos el estado de la barra informativa
         barraInformativaTexto("message_victory");
 
         alert("¡Felicidades! Has ganado el juego. Tuviste un total de " + contador_errores.text() + " errores");
 
-        // Quitamos la sombra a todas las celdas y les volvemos a añadir el listener
-        //quitarSombraYAnadirListenerATodosLosDivs();
+        //Ponemos la barra de progeso al 0
+        restablecerBarra();
 
         // Si el número de errores es menor que el de el récord o la cookie no existe, guardamos los valores
         comprobarRanking();
 
         // Vuelve a comenzar el juego
-        comenzarJuego();
+        abrirVentanaModal();
     }
+}
+
+function cambiaBarraProgreso(n_puntos) { 
+    /*console.log(100 / n_puntos);
+    barraProgreso.style.width = (100 / n_puntos) + "%";*/
+
+    switch(n_puntos) {
+
+        case 1:
+          // code block
+        barraProgreso.style.width = "14.30%";
+        break;
+        case 2:
+          // code block
+        barraProgreso.style.width = "28.6%";
+        break;
+        case 3:
+        barraProgreso.style.width = "42.9%";
+        break;  
+        case 4:
+            barraProgreso.style.width = "57.20%";
+        break;
+        case 5:
+            barraProgreso.style.width = "71.5%";
+        break;  
+        case 6:
+            barraProgreso.style.width = "85.8%";
+        break;
+        case 7:
+            barraProgreso.style.width = "100%";
+        break;
+      }
 }
 
 function comprobarCartas(carta) {
@@ -196,6 +251,7 @@ function comprobarCartas(carta) {
 
             // Detiene la página unos instantes y restablece el innerHTML para que se borre la imagen
             detenPagina();
+
         // Comprobamos que los valores son idénticos (se han acertado las cartas)
         } else if (kebabValor1 == kebabValor2 && celdaImagen1 != celdaImagen2) {
             sonidoCambiarCarta.pause();
@@ -205,7 +261,14 @@ function comprobarCartas(carta) {
             anadeSombraYQuitaListener();
 
             // Sumamos el contador y restablecemos el juego
-            contador_puntos.text((parseInt(contador_puntos.text()) + 1));
+            puntos++;
+            contador_puntos.text(puntos);
+
+            // Añadir mas recorrido a la barra de progreso
+console.log(puntos);
+
+            cambiaBarraProgreso(puntos);
+
 
             // Cambia el contenido de la barra informativa
             barraInformativaTexto("message_success");

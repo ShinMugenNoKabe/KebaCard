@@ -178,6 +178,12 @@ footer {
   display: none;
 }
 
+#boton-comenzar {
+  width: 60%;
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
 @media only screen and (max-width: 1024px) {
   #container {
     grid-template-columns: 32% 32% 32%;
@@ -188,7 +194,7 @@ footer {
     grid-template-columns: 48% 48%;
   }
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 576px) {
   #container {
     grid-template-columns: 48% 48%;
   }
@@ -205,22 +211,7 @@ footer {
     display: none;
   }
 
-  #punt {
-    grid-area: punt;
-  }
-
-  #top {
-    grid-area: topP;
-    margin: auto;
-  }
-
   #idioma {
-    grid-area: idioma;
-  }
-
-  .tabla-informacion {
-    margin-left: 5px;
-    grid-template-areas: "punt idioma" "topP idioma";
-    grid-gap: 10px;
+    margin: auto;
   }
 }/*# sourceMappingURL=style.css.map */
