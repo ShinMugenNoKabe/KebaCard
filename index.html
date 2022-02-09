@@ -59,7 +59,6 @@
                     <td class="table-success" id="top-player">Top player</td>
                     <td class="table-danger" id="puntuacionTextoRanking">Puntuación</td>
                 </tr>
-
                 <tr>
                     <td class="table-success" id="ranking-jugador">0</td>
                     <td class="table-danger" id="ranking-puntuacion">0</td>
@@ -95,29 +94,28 @@
     <button class="btn btn-primary" id="boton-comenzar" data-estado="start">Comenzar juego</button>
 
     <div id="barra-informativa" class="alert alert-success"><br></div>
+    <button class="btn btn-warning" id="mostrarTodasLasCartas">Mostrar</button>
 
     <br>
     <div class="juego">
-        <div id="container" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
-            <div class="celda col"></div>
-            <div class="celda col"></div>
-            <div class="celda col"></div>
-            <div class="celda col"></div>
-            <div class="celda col"></div>
-            <div class="celda col"></div>
-            <div class="celda col"></div>
-            <div class="celda col"></div>
-            <div class="celda col"></div>
-            <div class="celda col"></div>
-            <div class="celda col"></div>
-            <div class="celda col"></div>
-            <div class="celda col"></div>
-            <div class="celda col"></div>
-            <div class="celda col"></div>
-
+        <div id="container" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+            <div class="celda mx-2 my-2 rowc"></div>
+            <div class="celda mx-2 my-2 rowc"></div>
+            <div class="celda mx-2 my-2 rowc"></div>
+            <div class="celda mx-2 my-2 rowc"></div>
+            <div class="celda mx-2 my-2 rowc"></div>
+            <div class="celda mx-2 my-2 rowc"></div>
+            <div class="celda mx-2 my-2 rowc"></div>
+            <div class="celda mx-2 my-2 rowc"></div>
+            <div class="celda mx-2 my-2 rowc"></div>
+            <div class="celda mx-2 my-2 rowc"></div>
+            <div class="celda mx-2 my-2 rowc"></div>
+            <div class="celda mx-2 my-2 rowc"></div>
+            <div class="celda mx-2 my-2 rowc"></div>
+            <div class="celda mx-2 my-2 rowc"></div>
+            <div class="celda mx-2 my-2 rowc"></div>
             <div id="invisible"></div>
         </div>
-
         <aside id="descripcion"></aside>
     </div>
 
@@ -128,23 +126,23 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Inicio</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">KebaCard</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p>
-                        Introduce tu nombre: <input type="text" id="nombreModal" placeholder="Nombre">
+                        <span id="textoIntroduceNombre">Introduce tu nombre:</span> <input type="text" id="nombreModal">
                     </p>
                     <p>
-                        Selecciona una dificultad:<br>
-                        <input type="radio" name="dificultad" value="facil" checked> Fácil<br>
-                        <input type="radio" name="dificultad" value="normal"> Normal<br>
-                        <input type="radio" name="dificultad" value="difícil"> Difícil<br>
+                        <span id="textoSeleccionaDificultad">Selecciona una dificultad:</span><br>
+                        <input type="radio" name="dificultad" value="facil" checked> <span id="textoFacil">Fácil</span><br>
+                        <input type="radio" name="dificultad" value="normal"> Normal <br>
+                        <input type="radio" name="dificultad" value="difícil"> <span id="textoDificil">Difícil</span><br>
                     </p>
                     
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="textoBotonCancelar">Cerrar</button>
                     <button type="button" class="btn btn-primary" id="comenzarModal">Comenzar</button>
                 </div>
             </div>

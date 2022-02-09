@@ -12,7 +12,15 @@
             "language": "Language",
             "start_game": "Start the game",
             "restart_game": "Restart the game",
-            "progress": "Progress:"
+            "progress": "Progress:",
+            "show_button" : "Show Cards",
+            "model_name":"Insert your name:",
+            "modal_select": "Choose the difficulty:",
+            "modal_easy": "Easy",
+            "modal_challenging": "Challenging",
+            "modal_close": "Close",
+            "modal_start": "Start"
+
         },
         "es": {
             "player_name": "Nombre del jugador",
@@ -26,7 +34,14 @@
             "language": "Idioma",
             "start_game": "Comenzar el juego",
             "restart_game": "Volver a empezar",
-            "progress": "Progreso:"
+            "progress": "Progreso:",
+            "show_button":"Mostrar Cartas",
+            "model_name":"Introduce tu nombre:",
+            "modal_select": "Selecciona una dificultad:",
+            "modal_easy": "Fácil",
+            "modal_challenging": "Difícil",
+            "modal_close": "Cerrar",
+            "modal_start": "Comenzar"
         }
     }
 }
