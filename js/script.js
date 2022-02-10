@@ -54,7 +54,13 @@ let textoDificil = $('#textoDificil');
 
 let textoBotonCancelar = $('#textoBotonCancelar');
 
-$(document).ready(function () {
+let boton_facil = $("#facil");
+let boton_normal = $("#normal");
+let boton_dificil = $("#dificil");
+
+let dificultad = "";
+
+$(document).ready(function() {
 
     // Restablece los datos
     let restablecer = () => {
@@ -68,6 +74,14 @@ $(document).ready(function () {
     }
 
     let comenzarJuego = () => {
+        if (boton_facil.is(':checked')) {
+            dificultad = "facil";
+        } else if (boton_normal.is(':checked')) {
+            dificultad = "normal";
+        } else if (boton_dificil.is(':checked')) {
+            dificultad = "dificil";
+        }
+
         // Cogemos el nombre del jugador y la dificultad
         nombre = nombre_modal.val();
         nick.text(nombre);
@@ -98,23 +112,25 @@ $(document).ready(function () {
         $("#ranking-puntuacion").text(localStorage.getItem("Ranking"));
 
         let arrayCartas = $('.celda');
-        mostrarTodasLasCartas.click(function () {
-            mostrarTodasLasCartas.attr('disabled', 'disabled');
-            if (!pulsadoBotonMostrar) {
-                pulsadoBotonMostrar = true;
-                for (i = 0; i < arrayCartas.length; i++) {
-                    arrayCartas[i].innerHTML = "<img src='images/kebabs/kebab" + $(arrayCartas[i]).data('valor') + ".jpg' class='imagen'>";
-                }
-                window.setTimeout(() => {
-                    for (i = 0; i < arrayCartas.length; i++) {
-                        if (!listaDeCartasAcertadas.includes(arrayCartas[i])) {
-                            arrayCartas[i].innerHTML = "";
-                        }
-                    }
-                }, 2000);
-            }
-        });
 
+        if (dificultad == "facil") {
+            mostrarTodasLasCartas.click(function() {
+                mostrarTodasLasCartas.attr('disabled', 'disabled');
+                if (!pulsadoBotonMostrar) {
+                    pulsadoBotonMostrar = true;
+                    for (i = 0; i < arrayCartas.length; i++) {
+                        arrayCartas[i].innerHTML = "<img src='images/kebabs/kebab" + $(arrayCartas[i]).data('valor') + ".jpg' class='imagen'>";
+                    }
+                    window.setTimeout(() => {
+                        for (i = 0; i < arrayCartas.length; i++) {
+                            if (!listaDeCartasAcertadas.includes(arrayCartas[i])) {
+                                arrayCartas[i].innerHTML = "";
+                            }
+                        }
+                    }, 2000);
+                }
+            });
+        }
     }
 
     function abrirVentanaModal() {
@@ -141,7 +157,13 @@ $(document).ready(function () {
         }
 
         // Cambiamos el contenido de la primera celda para que aparezca la imagen según su valor
-        carta.innerHTML = "<img src='images/kebabs/kebab" + kebab_pulsado + ".jpg' class='imagen'>";
+        $(carta).fadeOut(200, function() {
+            carta.innerHTML = "<img src='images/kebabs/kebab" + kebab_pulsado + ".jpg' class='imagen'>";
+        });
+
+        $(carta).fadeIn(200);
+
+        //$(carta).fadeIn();
 
         if (kebabValor2 > 0) {
             kebabValor1 = 0;
