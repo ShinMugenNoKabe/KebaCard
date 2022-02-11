@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400&display=swap");
-
 body {
   margin: 0;
   text-align: center;
@@ -7,71 +6,36 @@ body {
   background-color: #ABBC85;
 }
 
-h1 {
-  margin: 0;
-  font-size: 50px;
-  color: #536256;
+#es {
+  margin-right: 1em;
 }
 
-header {
-  display: grid;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  grid-template-columns: 1fr 2fr 1fr;
+.btn {
+  width: 100%;
 }
 
-.tabla-informacion__caja {
-  display: flex;
-}
-
-.juego {
-  display: grid;
-  grid-template-columns: 80% 20%;
-}
-
-#descripcion {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #1f3d1d;
-  margin-right: 20px;
-  color: #ABBC85;
-  font-size: 20px;
-  padding: 10px;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 0px 1px;
-  border-radius: 5px;
-  overflow: scroll;
+#progresoTexto {
+  color: black;
 }
 
 #container {
   padding: 10px;
-  margin-left: 1rem;
   background-color: #55703f;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 0px 1px;
   border-radius: 5px;
 }
 
-#puntuacion {
-  margin-bottom: 1em;
-  font-size: 2em;
-}
-
 .celda {
   height: 200px;
-  width: 320px;
+  width: 220px;
   background-image: url("../images/celda.jpg");
   background-size: 100% 100%;
   border-radius: 10px;
 }
 
-.rowc{
-  --bs-gutter-x: 0rem ; 
-}
-
 .imagen {
-  height: 100%;
   width: 100%;
+  height: 100%;
   border-radius: 10px;
 }
 
@@ -103,32 +67,4 @@ footer {
   border-top: solid 2px #536256;
   background: #050126;
   background: linear-gradient(90deg, #050126 16%, #095579 65%, #1f3d1d 100%);
-}
-
-#tituloMovil {
-  display: none;
-}
-
-#boton-comenzar {
-  width: 60%;
-  font-size: 2em;
-  margin-bottom: 20px;
-}
-
-@media only screen and (max-width: 576px) {
-  #descripcion {
-    display: none;
-  }
-
-  #tituloMovil {
-    display: block;
-  }
-
-  #tituloPc {
-    display: none;
-  }
-
-  #idioma {
-    margin: auto;
-  }
 }/*# sourceMappingURL=style.css.map */

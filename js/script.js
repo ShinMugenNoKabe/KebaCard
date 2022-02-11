@@ -245,35 +245,12 @@ $(document).ready(function() {
     }
 
     function cambiaBarraProgreso(n_puntos) {
-        /*console.log(100 / n_puntos);
-        barraProgreso.style.width = (100 / n_puntos) + "%";*/
+        // Calculamos el porcentaje según el número de puntos
+        let progreso = Math.round(n_puntos / 7 * 100) + "%";
 
-        switch (n_puntos) {
-
-            case 1:
-                // code block
-                barraProgreso.style.width = "14.30%";
-                break;
-            case 2:
-                // code block
-                barraProgreso.style.width = "28.6%";
-                break;
-            case 3:
-                barraProgreso.style.width = "42.9%";
-                break;
-            case 4:
-                barraProgreso.style.width = "57.20%";
-                break;
-            case 5:
-                barraProgreso.style.width = "71.5%";
-                break;
-            case 6:
-                barraProgreso.style.width = "85.8%";
-                break;
-            case 7:
-                barraProgreso.style.width = "100%";
-                break;
-        }
+        // Le aplicamos a la barra el porcentaje
+        barraProgreso.style.width = progreso;
+        $(barraProgreso).text(n_puntos + " / 7")
     }
 
     function stopSonidoCambio() {
