@@ -2,8 +2,6 @@ let puntuacionTexto = $("#puntuacionTexto");
 let puntuacionTextoRanking = $("#puntuacionTextoRanking");
 
 let errorTexto = $("#errorTexto");
-let top_player = $("#top-player");
-let idiomaTexto = $("#idiomaTexto");
 let descripcion = $("#descripcion");
 
 let botonEsp = $("#es");
@@ -28,10 +26,8 @@ let sonidoVictoria = $('.victoria')[0];
 let sonidoBomba = $('.bomba')[0];
 
 let boton_comenzar = $("#boton-comenzar");
-let nombreJugador = $("#nombreJugador");
 
 let barraProgreso = $('.progress-bar')[0];
-let progresoTexto = $("#progresoTexto");
 
 let ventana_modal = $("#modal");
 
