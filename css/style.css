@@ -17,6 +17,9 @@ body {
 #progresoTexto {
   color: black;
 }
+.rowc{
+  --bs-gutter-x: 0rem;  
+}
 
 #container {
   padding: 10px;
@@ -60,11 +63,16 @@ body {
   height: 200%;
 }
 
+.bradius{
+  border-radius: 20px;
+  background-color: #F2E7C3;
+}
+
 footer {
   margin-top: 30px;
   padding-bottom: 20px;
   color: white;
   border-top: solid 2px #536256;
   background: #050126;
-  background: linear-gradient(90deg, #050126 16%, #095579 65%, #1f3d1d 100%);
+  background: linear-gradient(90deg, #011026 16%, #33917a 65%, #1f3d1d 100%);
 }/*# sourceMappingURL=style.css.map */
