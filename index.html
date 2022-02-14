@@ -32,11 +32,12 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-1 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.html">Juego</a>
+                        <a class="nav-link active" aria-current="page" href="index.html"><i
+                                class="fa-solid fa-dice-d6"></i> Juego</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="informacion.html">Información <i
-                                class="fa-solid fa-circle-info"></i></a>
+                        <a class="nav-link" href="informacion.html"><i class="fa-solid fa-circle-info"></i>
+                            Información</a>
                     </li>
                 </ul>
                 <form class="d-flex" onsubmit="return false">
@@ -134,8 +135,7 @@
         </div>
 
         <!-- Modal -->
-        <div id="modal" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div id="modal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -161,6 +161,26 @@
                         <button type="button" class="btn btn-primary" id="comenzarModal">Comenzar</button>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
                             id="textoBotonCancelar">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal" tabindex="-1" role="dialog" id="modal_victoria">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">¡Victoria!</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modal_contenido"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                            id="modal_victoria_boton_cerrar">Cerrar</button>
                     </div>
                 </div>
             </div>

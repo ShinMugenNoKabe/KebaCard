@@ -30,6 +30,7 @@ let boton_comenzar = $("#boton-comenzar");
 let barraProgreso = $('.progress-bar')[0];
 
 let ventana_modal = $("#modal");
+let modal_victoria = $("#modal_victoria");
 
 let boton_comenzar_modal = $("#comenzarModal");
 let nombre_modal = $("#nombreModal");
@@ -152,8 +153,10 @@ $(document).ready(function() {
     }
 
     function bombaPulsada() {
+        // Restablecemos los valores
         restablecer();
 
+        // Reseteamos los puntos
         puntos = 0;
         contador_puntos.text("0");
 
@@ -161,6 +164,9 @@ $(document).ready(function() {
     }
 
     function abrirVentanaModal() {
+        // Cierra la ventana modal de victoria
+        modal_victoria.modal('hide');
+
         // Abre la ventana y añade el listener de comenzar
         ventana_modal.modal('show');
         nombre_modal.focus();
@@ -263,7 +269,9 @@ $(document).ready(function() {
             // Cambiamos el estado de la barra informativa
             barraInformativaTexto("message_victory");
 
-            alert("¡Felicidades! Has ganado el juego. Tuviste un total de " + contador_errores.text() + " errores");
+            // Muestra el mensaje de victoria
+            modal_victoria.modal('show');
+            $(modal_contenido).text("¡Felicidades! Has ganado el juego. Tuviste un total de " + errores + " errores");
 
             //Ponemos la barra de progeso al 0
             restablecerBarra();
@@ -271,8 +279,11 @@ $(document).ready(function() {
             // Si el número de errores es menor que el de el récord o la cookie no existe, guardamos los valores
             comprobarRanking();
 
-            // Vuelve a comenzar el juego
-            abrirVentanaModal();
+            // Comienza el juego al cerrar la ventana
+            $("#modal_victoria_boton_cerrar").click(function() {
+                // Vuelve a comenzar el juego
+                abrirVentanaModal();
+            })
         }
     }
 
