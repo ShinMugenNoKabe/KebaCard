@@ -50,6 +50,8 @@ let textoDificil = $('#textoDificil');
 
 let textoBotonCancelar = $('#textoBotonCancelar');
 
+let botonMostrarCartas = $("#botonMostrarCartas");
+
 let boton_facil = $("#facil");
 let boton_normal = $("#normal");
 let boton_dificil = $("#dificil");
@@ -57,9 +59,25 @@ let boton_dificil = $("#dificil");
 let dificultad = "";
 
 $(document).ready(function() {
+    function comprobarDificultad() {
+        // Si la dificultad es fácil, ponemos disponible el botón de mostrar cartas y no hay bomba
+        if (boton_facil.is(':checked')) {
+            dificultad = "facil";
+            botonMostrarCartas.attr('disabled', null);
+
+            pulsadoBotonMostrar = false;
+            listaDeCartasAcertadas = [];
+
+            botonMostrarCartas.click(mostrarCartas);
+        } else if (boton_normal.is(':checked')) {
+            dificultad = "normal";
+        } else if (boton_dificil.is(':checked')) {
+            dificultad = "dificil";
+        }
+    }
 
     // Restablece los datos
-    let restablecer = () => {
+    function restablecer() {
         // Celdas DIV del DOM
         celdaImagen1 = 0;
         celdaImagen2 = 0;
@@ -69,14 +87,39 @@ $(document).ready(function() {
         kebabValor2 = 0;
     }
 
-    let comenzarJuego = () => {
-        if (boton_facil.is(':checked')) {
-            dificultad = "facil";
-        } else if (boton_normal.is(':checked')) {
-            dificultad = "normal";
-        } else if (boton_dificil.is(':checked')) {
-            dificultad = "dificil";
+    function mostrarCartas() {
+        let arrayCartas = $('.celda');
+
+        // Deshabilitamos el botón de mostrar
+        botonMostrarCartas.attr('disabled', 'disabled');
+
+        // Si no se ha pulsado el botón, le damos la vuelta a todas las cartas
+        // salvo las que hemos acertado
+        if (!pulsadoBotonMostrar) {
+            pulsadoBotonMostrar = true;
+
+            // Damos la vuelta a todas las cartas
+            for (i = 0; i < arrayCartas.length; i++) {
+                arrayCartas[i].innerHTML = "<img src='images/kebabs/kebab" + $(arrayCartas[i]).data('valor') + ".jpg' class='imagen'>";
+            }
+
+            // Detenemos la página para ver las cartas y les damos la vuelta de nuevo
+            window.setTimeout(() => {
+                for (i = 0; i < arrayCartas.length; i++) {
+                    if (!listaDeCartasAcertadas.includes(arrayCartas[i])) {
+                        arrayCartas[i].innerHTML = "";
+                    }
+                }
+            }, 2000);
         }
+    }
+
+    function comenzarJuego() {
+        // Quitamos los listeners a todas las cartas
+        $(".celda").off("click");
+
+        // Comprobamos la dificultad
+        comprobarDificultad();
 
         // Cogemos el nombre del jugador y la dificultad
         nombre = nombre_modal.val();
@@ -106,33 +149,22 @@ $(document).ready(function() {
         // Le aplica el texto a los elementos del DOM las variables guardadas en web storage
         $("#ranking-jugador").text(localStorage.getItem("Jugador"));
         $("#ranking-puntuacion").text(localStorage.getItem("Ranking"));
+    }
 
-        let arrayCartas = $('.celda');
+    function bombaPulsada() {
+        restablecer();
 
-        if (dificultad == "facil") {
-            mostrarTodasLasCartas.click(function() {
-                mostrarTodasLasCartas.attr('disabled', 'disabled');
-                if (!pulsadoBotonMostrar) {
-                    pulsadoBotonMostrar = true;
-                    for (i = 0; i < arrayCartas.length; i++) {
-                        arrayCartas[i].innerHTML = "<img src='images/kebabs/kebab" + $(arrayCartas[i]).data('valor') + ".jpg' class='imagen'>";
-                    }
-                    window.setTimeout(() => {
-                        for (i = 0; i < arrayCartas.length; i++) {
-                            if (!listaDeCartasAcertadas.includes(arrayCartas[i])) {
-                                arrayCartas[i].innerHTML = "";
-                            }
-                        }
-                    }, 2000);
-                }
-            });
-        }
+        puntos = 0;
+        contador_puntos.text("0");
+
+        alert("Bomba pulsada")
     }
 
     function abrirVentanaModal() {
         // Abre la ventana y añade el listener de comenzar
         ventana_modal.modal('show');
         nombre_modal.focus();
+        
         boton_comenzar_modal.click(comenzarJuego);
     }
 
@@ -159,8 +191,6 @@ $(document).ready(function() {
 
         $(carta).fadeIn(200);
 
-        //$(carta).fadeIn();
-
         if (kebabValor2 > 0) {
             kebabValor1 = 0;
             kebabValor2 = 0;
@@ -171,6 +201,11 @@ $(document).ready(function() {
             kebabValor1 = kebab_pulsado;
         } else {
             kebabValor2 = kebab_pulsado;
+        }
+
+        // Comprobamos que se ha pulsado la carta bomba
+        if (kebab_pulsado == 8) {
+            bombaPulsada();
         }
     }
 
@@ -196,6 +231,7 @@ $(document).ready(function() {
         // A cada celda le añadimos la sombra y le quitamos el listener de click
         listaDeCartasAcertadas.push(celdaImagen1);
         listaDeCartasAcertadas.push(celdaImagen2);
+        
         celdaImagen1.classList.add("sombra");
         $(celdaImagen1).off('click');
         celdaImagen2.classList.add("sombra");
@@ -340,7 +376,13 @@ $(document).ready(function() {
     // Recorremos el array para añadirle un listener a todas las celdas y les establecemos un valor de DATA
     function anadirListenerYDataACartas() {
         // Lista que contiene los valores (se repiten porque tiene que salir el mismo número 2 veces)
-        let lista = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8];
+        let lista = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
+
+        // Si la dificultad es difícil añadimos una celda nueva y añadimos el número 8 a la lista (carta bomba)
+        if (dificultad === "dificil") {
+            $("#container").append('<div class="celda mx-2 my-2 rowc"></div>');
+            lista.push(8);
+        }
 
         for (let i = 0; i < $(".celda").length; i++) {
             establecerValor($(".celda")[i], lista);
