@@ -31,6 +31,7 @@ let barraProgreso = $('.progress-bar')[0];
 
 let ventana_modal = $("#modal");
 let modal_victoria = $("#modal_victoria");
+let modal_bomba = $("#modal_bomba");
 
 let boton_comenzar_modal = $("#comenzarModal");
 let nombre_modal = $("#nombreModal");
@@ -70,8 +71,16 @@ $(document).ready(function() {
             listaDeCartasAcertadas = [];
 
             botonMostrarCartas.click(mostrarCartas);
+
+            if ($(".celda").length == 15) {
+                $("#container").find('div:first').remove();
+            }
         } else if (boton_normal.is(':checked')) {
             dificultad = "normal";
+
+            if ($(".celda").length == 15) {
+                $("#container").find('div:first').remove();
+            }
         } else if (boton_dificil.is(':checked')) {
             dificultad = "dificil";
         }
@@ -99,6 +108,8 @@ $(document).ready(function() {
         if (!pulsadoBotonMostrar) {
             pulsadoBotonMostrar = true;
 
+            caja_invisible.style.display = "block";
+
             // Damos la vuelta a todas las cartas
             for (i = 0; i < arrayCartas.length; i++) {
                 arrayCartas[i].innerHTML = "<img src='images/kebabs/kebab" + $(arrayCartas[i]).data('valor') + ".jpg' class='imagen'>";
@@ -111,6 +122,9 @@ $(document).ready(function() {
                         arrayCartas[i].innerHTML = "";
                     }
                 }
+
+                // Quita la caja invisible
+                caja_invisible.style.display = "none";
             }, 2000);
         }
     }
@@ -153,6 +167,12 @@ $(document).ready(function() {
     }
 
     function bombaPulsada() {
+        // Muestra la ventana modal de fallo
+        modal_bomba.modal("show");
+        $("#modal_bomba_boton_cerrar").click(function() {
+            modal_bomba.modal("hide");
+        });
+
         // Restablecemos los valores
         restablecer();
 
@@ -160,7 +180,14 @@ $(document).ready(function() {
         puntos = 0;
         contador_puntos.text("0");
 
-        alert("Bomba pulsada")
+        // Reseteamos el juego
+        $(".celda").off();
+
+        quitarSombraATodosLosDivs();
+
+        anadirListenerYDataACartas();
+
+        restablecerBarra();
     }
 
     function abrirVentanaModal() {
@@ -211,6 +238,8 @@ $(document).ready(function() {
 
         // Comprobamos que se ha pulsado la carta bomba
         if (kebab_pulsado == 8) {
+            carta.innerHTML = "";
+
             bombaPulsada();
         }
     }
@@ -391,7 +420,10 @@ $(document).ready(function() {
 
         // Si la dificultad es difícil añadimos una celda nueva y añadimos el número 8 a la lista (carta bomba)
         if (dificultad === "dificil") {
-            $("#container").append('<div class="celda mx-2 my-2 rowc"></div>');
+            if ($(".celda").length == 14) {
+                $("#container").append('<div class="celda mx-2 my-2 rowc"></div>');
+            }
+
             lista.push(8);
         }
 
