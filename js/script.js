@@ -166,11 +166,19 @@ $(document).ready(function() {
         $("#ranking-puntuacion").text(localStorage.getItem("Ranking"));
     }
 
-    function bombaPulsada() {
+    function bombaPulsada(carta) {
+        // Sonido de bomba
+        stopSonidoError();
+        stopSonidoVictoria();
+        stopSonidoCambio();
+
+        sonidoBomba.play();
+
         // Muestra la ventana modal de fallo
         modal_bomba.modal("show");
         $("#modal_bomba_boton_cerrar").click(function() {
             modal_bomba.modal("hide");
+            carta.innerHTML = "";
         });
 
         // Restablecemos los valores
@@ -238,9 +246,11 @@ $(document).ready(function() {
 
         // Comprobamos que se ha pulsado la carta bomba
         if (kebab_pulsado == 8) {
-            carta.innerHTML = "";
+            /*window.setTimeout(function() {
+                
+            }, 2000);*/
 
-            bombaPulsada();
+            bombaPulsada(carta);
         }
     }
 

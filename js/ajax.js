@@ -59,7 +59,7 @@ function barraInformativaTexto(estado) {
             if (localStorage.getItem("idioma") != null) {
                 lang = localStorage.getItem("idioma")
             } else {
-                lang = "ES"
+                lang = "es"
             }
 
             let elements = elementosLangJSON[lang];
