@@ -55,12 +55,20 @@ let textoBotonCancelar = $('#textoBotonCancelar');
 
 let botonMostrarCartas = $("#botonMostrarCartas");
 
+let top_player = $("#top-player");
+
 let boton_facil = $("#facil");
 let boton_normal = $("#normal");
 let boton_dificil = $("#dificil");
 let boton_leyenda = $("#leyenda");
 
 let dificultad = "";
+
+let textoBarraProgreso = $('#textoBarraProgreso');
+
+let textoJuego = $('#textoJuego');
+
+let textoInformacion = $('#textoInformacion');
 
 $(document).ready(function() {
     function comprobarDificultad() {

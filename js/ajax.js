@@ -37,6 +37,11 @@ function loadJSON(json) {
     textoDificil.text(elements["modal_challenging"]);
     textoBotonCancelar.text(elements["modal_close"]);
     boton_comenzar_modal.text(elements["modal_start"]);
+    top_player.text(elements["top_player"]);
+    nick.text(elements["player_name"]);
+    textoBarraProgreso.text(elements["progress_bar"]);
+    textoJuego.text(elements["text_game"]);
+    textoInformacion.text(elements["text_info"]);
 
     if (boton_comenzar.attr("data-estado") == "start") {
         boton_comenzar.text(elements["start_game"]);

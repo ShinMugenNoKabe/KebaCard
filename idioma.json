@@ -14,8 +14,12 @@
             "modal_easy": "Easy",
             "modal_challenging": "Challenging",
             "modal_close": "Close",
-            "modal_start": "Start"
-
+            "modal_start": "Start",
+            "top_player": "Top player",
+            "player_name": "Player name",
+            "progress_bar": "Progress bar",
+            "text_game": "Game",
+            "text_info": "Information"
         },
         "es": {
             "score": "Puntuación",
@@ -31,7 +35,12 @@
             "modal_easy": "Fácil",
             "modal_challenging": "Difícil",
             "modal_close": "Cerrar",
-            "modal_start": "Comenzar"
+            "modal_start": "Comenzar",
+            "top_player": "Mejor Jugador",
+            "player_name": "Nombre Jugador",
+            "progress_bar": "Barra de progreso",
+            "text_game": "Juego",
+            "text_info": "Información"
         }
     }
 }
