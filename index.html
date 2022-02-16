@@ -37,7 +37,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="informacion.html"><i class="fa-solid fa-circle-info"></i>
-                           <span id="textoInformacion">Información</span></a>
+                            <span id="textoInformacion">Información</span></a>
                     </li>
                 </ul>
                 <form class="d-flex" onsubmit="return false">
@@ -94,15 +94,13 @@
 
                 <div class="col-12">
                     <table class="table table-striped">
-                        <tr>
-                            <td class="table-warning" colspan="2"><span id="top-player">Mejor Jugador</span> <i
-                                    class="fa-solid fa-trophy"></i></td>
-                        </tr>
-                        <tr>
-                            <td class="table-warning" id="ranking-jugador">....</td>
-                            <td class="table-success"><i class="fa-solid fa-check"></i> <span
-                                    id="ranking-puntuacion">0</span></td>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <td class="table-warning" colspan="2"><span id="top-player">Mejores Jugadores</span> <i
+                                        class="fa-solid fa-trophy"></i></td>
+                            </tr>
+                        </thead>
+                        <tbody id="jugadores"></tbody>
                     </table>
                 </div>
             </div>
