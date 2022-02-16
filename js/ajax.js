@@ -21,6 +21,7 @@ function loadLanguage() {
         textoSeleccionaDificultad.text(elements["modal_select"]);
         textoFacil.text(elements["modal_easy"]);
         textoDificil.text(elements["modal_challenging"]);
+        textoLeyenda.text(elements["text_legends"]);
         textoBotonCancelar.text(elements["modal_close"]);
         boton_comenzar_modal.text(elements["modal_start"]);
         top_player.text(elements["top_player"]);

@@ -51,6 +51,8 @@ let textoFacil = $('#textoFacil');
 
 let textoDificil = $('#textoDificil');
 
+let textoLeyenda = $('#textoLeyenda');
+
 let textoBotonCancelar = $('#textoBotonCancelar');
 
 let botonMostrarCartas = $("#botonMostrarCartas");
