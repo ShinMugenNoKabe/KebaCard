@@ -50,3 +50,10 @@ function barraInformativaTexto(estado) {
 }
 
 loadLanguage();
+
+function cambiarTextoIdioma(boton) {
+    // Guarda en el web storage el idioma
+    localStorage.setItem("idioma", boton.currentTarget.id);
+
+    loadLanguage();
+}
