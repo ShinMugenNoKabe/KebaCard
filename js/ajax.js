@@ -1,80 +1,51 @@
-function loadLanguage() {
-    let xhr = new XMLHttpRequest();
-
-    xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            loadJSON(this.responseText);
-        }
-    };
-
-    xhr.open("GET", "idioma.json", true);
-    xhr.send();
+function getIdioma() {
+    if (localStorage.getItem("idioma") != null) {
+        return localStorage.getItem("idioma");
+    } else {
+        return "es";
+    }
 }
 
-function loadJSON(json) {
-    let docJSON = JSON.parse(json);
+function loadLanguage() {
+    $.getJSON("idioma.json", function(respuesta) {
+        let idioma = getIdioma();
 
-    let elementosLangJSON = docJSON["lang"];
+        let elements = respuesta["lang"][idioma];
 
-    let lang = ""
+        puntuacionTexto.text(elements["score"]);
+        puntuacionTextoRanking.text(elements["score"]);
+        errorTexto.text(elements["errors"]);
+        descripcion.text(elements["game_description"]);
+        mostrarTodasLasCartas.text(elements["show_button"]);
+        textoIntroduceNombre.text(elements["model_name"]);
+        textoSeleccionaDificultad.text(elements["modal_select"]);
+        textoFacil.text(elements["modal_easy"]);
+        textoDificil.text(elements["modal_challenging"]);
+        textoBotonCancelar.text(elements["modal_close"]);
+        boton_comenzar_modal.text(elements["modal_start"]);
+        top_player.text(elements["top_player"]);
+        nick.text(elements["player_name"]);
+        textoBarraProgreso.text(elements["progress_bar"]);
+        textoJuego.text(elements["text_game"]);
+        textoInformacion.text(elements["text_info"]);
 
-    if (localStorage.getItem("idioma") != null) {
-        lang = localStorage.getItem("idioma")
-    } else {
-        lang = "es"
-    }
-
-    let elements = elementosLangJSON[lang];
-
-    puntuacionTexto.text(elements["score"]);
-    puntuacionTextoRanking.text(elements["score"]);
-    errorTexto.text(elements["errors"]);
-    descripcion.text(elements["game_description"]);
-    mostrarTodasLasCartas.text(elements["show_button"]);
-    textoIntroduceNombre.text(elements["model_name"]);
-    textoSeleccionaDificultad.text(elements["modal_select"]);
-    textoFacil.text(elements["modal_easy"]);
-    textoDificil.text(elements["modal_challenging"]);
-    textoBotonCancelar.text(elements["modal_close"]);
-    boton_comenzar_modal.text(elements["modal_start"]);
-    top_player.text(elements["top_player"]);
-    nick.text(elements["player_name"]);
-    textoBarraProgreso.text(elements["progress_bar"]);
-    textoJuego.text(elements["text_game"]);
-    textoInformacion.text(elements["text_info"]);
-
-    if (boton_comenzar.attr("data-estado") == "start") {
-        boton_comenzar.text(elements["start_game"]);
-    } else {
-        boton_comenzar.text(elements["restart_game"]);
-    }
+        if (boton_comenzar.attr("data-estado") == "start") {
+            boton_comenzar.text(elements["start_game"]);
+        } else {
+            boton_comenzar.text(elements["restart_game"]);
+        }
+    });
 }
 
 function barraInformativaTexto(estado) {
-    let xhr = new XMLHttpRequest();
+    $.getJSON("idioma.json", function(respuesta) {
 
-    xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            let docJSON = JSON.parse(this.responseText);
+        let idioma = getIdioma();
 
-            let elementosLangJSON = docJSON["lang"];
+        let elements = respuesta["lang"][idioma];
 
-            let lang = ""
-
-            if (localStorage.getItem("idioma") != null) {
-                lang = localStorage.getItem("idioma")
-            } else {
-                lang = "es"
-            }
-
-            let elements = elementosLangJSON[lang];
-
-            barra_informativa.text(elements[estado]);
-        }
-    };
-
-    xhr.open("GET", "idioma.json", true);
-    xhr.send();
+        barra_informativa.text(elements[estado]);
+    });
 }
 
 loadLanguage();
