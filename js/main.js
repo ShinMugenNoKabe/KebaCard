@@ -77,7 +77,7 @@ $(document).ready(function() {
 
         // Cogemos el nombre del jugador y la dificultad
         nombre = nombre_modal.val();
-        nick.text(nombre);
+        nick.html(nombre);
 
         // Cerramos la ventana modal
         ventana_modal.modal('hide');
@@ -93,7 +93,7 @@ $(document).ready(function() {
 
         // Restablecemos los DIVs y cambiamos el texto de los botones
         boton_comenzar.attr("data-estado", "started");
-        loadLanguage();
+        //loadLanguage();
         quitarSombraATodosLosDivs();
 
         anadirListenerYDataACartas();
