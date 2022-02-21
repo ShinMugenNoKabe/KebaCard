@@ -1,4 +1,7 @@
 $(document).ready(function() {
+    // Anima las celdas
+    $(".celda").fadeTo(800, 1);
+
     // Carga la lista de mejores jugadores al cargar la página
     cargarRanking();
 
@@ -200,17 +203,18 @@ $(document).ready(function() {
 
             // Restablecemos los valores
             restablecer();
-
-            // Suma del contador de errores
-            errores++;
+            
             contador_errores.text(errores);
 
             // Quita la caja invisible
             caja_invisible.style.display = "none";
         }, 500);
 
+        // Suma del contador de errores
+        errores++;
+
         // Comprobamos la dificultad leyenda y los errores acumulados
-        if (dificultad == "leyenda" && errores == 1) {
+        if (dificultad == "leyenda" && errores == 2) {
             // Muestra la ventana modal de derrota
             modal_leyenda.modal("show");
 
@@ -375,10 +379,11 @@ $(document).ready(function() {
         // Lista que contiene los valores (se repiten porque tiene que salir el mismo número 2 veces)
         let lista = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
 
-        // Si la dificultad es normal o difícil añadimos una celda nueva y añadimos el número 8 a la lista (carta bomba)
+        // Si la dificultad es normal, difícil o leyenda añadimos una celda nueva y añadimos el número 8 a la lista (carta bomba)
         if (dificultad != "facil") {
             if ($(".celda").length == 14) {
                 $("#container").append('<div class="celda mx-2 my-2 rowc"></div>');
+                $(".celda").fadeTo(800, 1);
             }
 
             lista.push(8);
