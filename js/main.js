@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // Anima las celdas
-    $(".celda").fadeTo(800, 1);
+    $(".celda").effect("slide", 500);
 
     // Carga la lista de mejores jugadores al cargar la página
     cargarRanking();
@@ -113,6 +113,9 @@ $(document).ready(function() {
         stopSonidoCambio();
 
         sonidoBomba.play();
+
+        // Efecto de explosión
+        $(carta).effect("explode", 500);
 
         // Muestra la ventana modal de fallo
         modal_bomba.modal("show");
