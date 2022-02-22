@@ -82,3 +82,10 @@ footer {
   background: #050126;
   background: linear-gradient(90deg, #011026 16%, #33917a 65%, #1f3d1d 100%);
 }/*# sourceMappingURL=style.css.map */
+
+@media screen and (max-width: 520px) {
+  .celda {
+    height: 75px;
+    width: 75px;
+  }
+}
